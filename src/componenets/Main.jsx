@@ -114,8 +114,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
-        {/* Exchange Rates Table */}
         <Exchangerate />
       </div>
     </div>

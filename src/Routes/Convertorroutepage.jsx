@@ -4,7 +4,7 @@ import Chart from "../subcomponent/Chart"; // Replace with your Chart component
 
 const DashboardContent = () => {
   return (
-    <div className="bg-white p-6  h-full w-screen border border-[#e0e5f0] shadow-sm">
+    <div className="bg-white p-6  h-screen w-full border border-[#e0e5f0] shadow-sm">
       {/* Currency Converter */}
       <h3 className="text-xl font-semibold text-[#1a1a1a] mb-6 tracking-wide">
         Currency Converter
