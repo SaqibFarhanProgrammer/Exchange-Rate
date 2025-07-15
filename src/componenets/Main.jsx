@@ -18,7 +18,6 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
       {/* Left Navigation Panel */}
-      <Sidebar />
       {/* Main Content Area */}
       <div className="main-content flex-1 p-10 overflow-y-auto">
         {/* Search Component */}
