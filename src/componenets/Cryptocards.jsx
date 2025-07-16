@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Cryptocards = () => {
   return (
@@ -21,6 +22,14 @@ const Cryptocards = () => {
           </p>
         </div>
       ))}
+      <div className="text-right pr-40 ">
+        <Link
+          to="/crypto"
+          className="text-[#0040ff] text-sm font-medium hover:underline"
+        >
+          See more →
+        </Link>
+      </div>
     </div>
   );
 };
