@@ -1,8 +1,8 @@
-// ./Context/Context.jsx
+// Context.jsx
 import { createContext } from "react";
 import axios from "axios";
 
-export const context = createContext();
+export const context = createContext(); // ✅ named export
 
 const Contextprovider = ({ children }) => {
   const getdata = async () => {
