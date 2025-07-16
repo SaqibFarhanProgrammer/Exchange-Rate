@@ -2,7 +2,7 @@
 import { createContext } from "react";
 import axios from "axios";
 
-export const context = createContext(); // ✅ named export
+export const context = createContext();
 
 const Contextprovider = ({ children }) => {
   const getdata = async () => {
