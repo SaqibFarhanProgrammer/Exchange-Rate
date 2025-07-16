@@ -1,27 +1,20 @@
-import React, { useEffect } from "react";
-import {
-  FaBitcoin,
-  FaEthereum,
-  FaChartLine,
-  FaExchangeAlt,
-  FaSearch,
-  FaRegUserCircle,
-  FaArrowRight,
-} from "react-icons/fa";
+import React, { useContext, useEffect } from "react";
+import { FaBitcoin, FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import Chart from "../subcomponent/Chart";
 import Sidebar from "./Sidebar";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import axios from "axios";
+import context from "../Context/Context";
 
 const Dashboard = () => {
+  const { getdata } = useContext(context);
+  console.log(getdata);
+
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
-      {/* Left Navigation Panel */}
-      {/* Main Content Area */}
       <div className="main-content flex-1 p-10 overflow-y-auto">
-        {/* Search Component */}
         <div className="search-container mb-8">
           <div className="search-bar relative flex justify-between">
             <FaSearch className="search-icon absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0040ff]" />
@@ -36,12 +29,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Crypto Stats Cards */}
         <Cryptocards />
 
-        {/* Main Dashboard Content */}
         <div className="dashboard-content grid grid-cols-3 gap-6">
-          {/* Market Chart Section */}
           <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
             <div className="chart-header flex justify-between items-center mb-4">
               <h3 className="section-title text-lg font-medium text-[#1a1a1a]">

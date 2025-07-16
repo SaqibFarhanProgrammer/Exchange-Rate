@@ -13,9 +13,6 @@ import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const location = useLocation();
-  console.log(location.pathname);
-
   return (
     <div className="navigation-panel w-[18vw] bg-gradient-to-b from-[#e0e7ff] to-[#f7f9ff] p-6 flex flex-col justify-between shadow-xl border-r border-[#e0e5f0]">
       <div>
