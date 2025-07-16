@@ -3,23 +3,29 @@ import { createContext, useEffect } from "react";
 
 export const context = createContext();
 
-const Contextprovider = () => {
+const Contextprovider = ({ children }) => {
   async function getdata() {
-    const response = await axios.get(
-      "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=PKR"
-    );
-    const currencydata = await response.data;
-    console.log(currencydata);
+    try {
+      const response = await axios.get(
+        "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10&convert=USD&CMC_PRO_API_KEY=fa42bd09-7593-4453-9511-a30f92a7e8b2"
+      );
+      const currencydata = response.data;
+      console.log(currencydata);
+      return currencydata;
+    } catch (error) {
+      console.error("Error fetching currency data:", error);
+    }
   }
 
-  useEffect(() => {}, [getdata()]);
-  async function cryptodata() {
-    const response2 = await axios.get(
-      "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=PKR"
-    );
-    const cryptodata = await response2.data;
-    console.log(cryptodata);
-  }
+  useEffect(() => {
+    getdata();
+  }, []);
 
-  useEffect(() => {}, [getdata(), cryptodata()]);
+  const value = {
+    getdata,
+  };
+
+  return <context.Provider value={value}>{children}</context.Provider>;
 };
+
+export default Contextprovider;

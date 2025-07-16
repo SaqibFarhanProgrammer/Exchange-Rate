@@ -7,8 +7,13 @@ import Convertorroute from "./Routes/Convertorroutepage";
 import Profileroute from "./Routes/Profileroutepage";
 import Exchangeroute from "./Routes/Exchaneratepage";
 import CryptoPriceUI from "./Routes/CryptoPriceUI";
+import { useContext } from "react";
+import Context from "./Context/Context";
 
 function App() {
+  const getdata = useContext(Context);
+  console.log(getdata);
+
   return (
     <Router>
       <div className="App bg-zinc-900 w-full h-screen flex">
