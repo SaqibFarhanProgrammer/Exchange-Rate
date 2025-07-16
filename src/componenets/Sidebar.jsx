@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div className="navigation-panel w-[18vw] bg-gradient-to-b from-[#e0e7ff] to-[#f7f9ff] p-6 flex flex-col justify-between shadow-xl border-r border-[#e0e5f0]">
       <div>
         <h1 className="app-title text-2xl font-bold mb-8 tracking-wider text-center bg-gradient-to-r from-[#0040ff] to-[#00aaff] bg-clip-text text-transparent">
-          Crypto.
+          Exchange Gate
         </h1>
         <div className="menu-options flex flex-col gap-5 text-sm">
           <Link
