@@ -48,7 +48,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Currency Converter */}
           <div className="currency-converter bg-white p-6 rounded-xl border border-[#e0e5f0]">
             <h3 className="section-title text-lg font-medium mb-6 text-[#1a1a1a]">
               Currency Converter
