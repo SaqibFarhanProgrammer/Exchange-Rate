@@ -1,17 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaBitcoin, FaSearch, FaArrowRight } from "react-icons/fa";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import Chart from "../subcomponent/Chart";
-import Sidebar from "./Sidebar";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
-import axios from "axios";
-import cryptodata from "../Cryptodata";
 const Dashboard = () => {
   const [data, setdata] = useState();
 
   useEffect(() => {
-    console.log(cryptodata);
+    const getRates = async () => {
+      try {
+        const res = await fetch(
+          "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
+        );
+        const data = await res.json();
+        console.log("DATA:", data);
+      } catch (error) {
+        console.error("API Error:", error);
+      }
+    };
+
+    getRates();
   }, []);
 
   return (
