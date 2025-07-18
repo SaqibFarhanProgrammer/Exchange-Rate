@@ -6,3 +6,11 @@
   padding: 5px;
   border-radius: 50px;
 }
+.cryptoprice::-webkit-scrollbar {
+  display: none;
+}
+
+.cryptoprice {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
