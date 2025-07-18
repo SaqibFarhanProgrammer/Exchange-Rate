@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaBitcoin, FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import Chart from "../subcomponent/Chart";
@@ -6,11 +6,32 @@ import Sidebar from "./Sidebar";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import axios from "axios";
-import context from "../Context/Context";
 
 const Dashboard = () => {
-  const { getdata } = useContext(context);
-  console.log(getdata);
+  const [data, setdata] = useState();
+  const [cryptodata, setcryptodata] = useState();
+  useEffect(() => {
+    const getdata = async () => {
+      const res = await axios.get(
+        "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=PKR"
+      );
+      setdata(res.data);
+    };
+    getdata();
+  }, []);
+  useEffect(() => {
+    const cryptodata = async () => {
+      const rescrypto = await axios.get(
+        "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=USD"
+      );
+      setcryptodata(rescrypto.data);
+    };
+    cryptodata();
+  }, []);
+
+  useEffect(() => {
+    console.log(cryptodata);
+  }, []);
 
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
@@ -29,7 +50,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <Cryptocards />
+        <Cryptocards data={data} cryptodata={cryptodata} />
 
         <div className="dashboard-content grid grid-cols-3 gap-6">
           <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
@@ -44,7 +65,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
-              <Chart />
+              <Chart data={data} cryptodata={cryptodata} />
             </div>
           </div>
 
@@ -104,7 +125,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Exchangerate />
+        <Exchangerate data={data} cryptodata={cryptodata} />
       </div>
     </div>
   );
