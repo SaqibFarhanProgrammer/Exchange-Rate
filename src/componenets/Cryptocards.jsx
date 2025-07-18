@@ -27,7 +27,7 @@ const Cryptocards = ({ cryptodata }) => {
       {data ? (
         cards
       ) : (
-        <h1 className=" text-[#0040ff]  text-2xl font-medium hover:underline">
+        <h1 className="text-[#0040ff] pl-2 text-2xl font-medium animate-pulse">
           Loading...
         </h1>
       )}
