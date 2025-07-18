@@ -6,18 +6,14 @@ import Sidebar from "./Sidebar";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import axios from "axios";
+import cryptodata from "../Cryptodata";
 
 const Dashboard = () => {
   const [data, setdata] = useState();
+
   useEffect(() => {
-    const getdata = async () => {
-      const res = await axios.get(
-        "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=PKR"
-      );
-      setdata(res.data);
-      console.log(data);
-    };
-    getdata();
+    console.log(cryptodata);
+    setdata(cryptodata);
   }, []);
 
   return (
