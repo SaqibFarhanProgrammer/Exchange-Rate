@@ -9,28 +9,15 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [data, setdata] = useState();
-  const [cryptodata, setcryptodata] = useState();
   useEffect(() => {
     const getdata = async () => {
       const res = await axios.get(
         "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=PKR"
       );
       setdata(res.data);
+      console.log(data);
     };
     getdata();
-  }, []);
-  useEffect(() => {
-    const cryptodata = async () => {
-      const rescrypto = await axios.get(
-        "https://api.currencyapi.com/v3/latest?apikey=cur_live_h27pZ6dzuX5xT8hDSLAvPGYiee5oXG0j8M6iB60Y&base_currency=USD"
-      );
-      setcryptodata(rescrypto.data);
-    };
-    cryptodata();
-  }, []);
-
-  useEffect(() => {
-    console.log(cryptodata);
   }, []);
 
   return (
@@ -50,7 +37,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <Cryptocards data={data} cryptodata={cryptodata} />
+        <Cryptocards data={data} />
 
         <div className="dashboard-content grid grid-cols-3 gap-6">
           <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
@@ -65,7 +52,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
-              <Chart data={data} cryptodata={cryptodata} />
+              <Chart data={data} />
             </div>
           </div>
 
@@ -125,7 +112,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Exchangerate data={data} cryptodata={cryptodata} />
+        <Exchangerate data={data} />
       </div>
     </div>
   );
