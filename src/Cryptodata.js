@@ -49,10 +49,6 @@ const cryptoPrices = {
 };
 
 // Example usage:
-console.log(`Current Bitcoin price: $${cryptoPrices.prices.bitcoin.price}`);
-console.log(`24h change for Ethereum: ${cryptoPrices.prices.ethereum.change24h}%`);
-console.log(`Current Solana price: $${cryptoPrices.prices.solana.price}`);
-console.log(`24h change for Polygon: ${cryptoPrices.prices.polygon.change24h}%`);
 
 
 export default cryptoPrices

@@ -3,20 +3,19 @@ import { FaBitcoin, FaSearch, FaArrowRight } from "react-icons/fa";
 import Chart from "../subcomponent/Chart";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
+
 const Dashboard = () => {
   const [data, setdata] = useState();
+  const [exchange, setexchange] = useState();
 
   useEffect(() => {
     const getRates = async () => {
-      try {
-        const res = await fetch(
-          "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
-        );
-        const data = await res.json();
-        console.log("DATA:", data);
-      } catch (error) {
-        console.error("API Error:", error);
-      }
+      const res = await fetch(
+        "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
+      );
+      const datas = await res.json();
+      setexchange(datas);
+      console.log("Exchange Rate Data:", datas);
     };
 
     getRates();
@@ -54,7 +53,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
-              <Chart data={data} />
+              <Chart data={data} datas={Exchangerate} />
             </div>
           </div>
 
@@ -114,7 +113,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Exchangerate data={data} />
+        <Exchangerate dataa={exchange} />
       </div>
     </div>
   );

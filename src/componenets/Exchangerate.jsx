@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Exchangerate = () => {
+const Exchangerate = ({ dataa }) => {
+  useEffect(() => {
+    const getRates = async () => {
+      const res = await fetch(
+        "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
+      );
+      const datas = await res.json();
+      setexchange(datas);
+      console.log("Exchange Rate Data:", datas);
+    };
+
+    getRates();
+  }, []);
+
   const data = [
     {
       currency: "Bitcoin (BTC)",
