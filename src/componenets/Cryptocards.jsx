@@ -1,30 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import cryptodata from "../Cryptodata";
 
-const Cryptocards = ({ cryptodata }) => {
-  const data = cryptodata?.data;
+const Cryptocards = () => {
+  const dataa = cryptodata;
 
-  const cards = data
-    ? Object.entries(data)
-        .slice(0, 4)
-        .map(([key, item], index) => (
-          <div
-            key={index}
-            className="stat-card bg-gradient-to-br from-white to-[#f0f5ff] hover:from-[#f0f5ff] hover:to-white p-5 rounded-xl shadow-md border border-[#e0e5f0] transition-all"
-          >
-            <h2 className="crypto-name text-sm text-zinc-500 mb-2">
-              {item.code}
-            </h2>
-            <p className="crypto-price text-xl font-semibold text-[#1a1a1a]">
-              {Math.floor(item.value)}
-            </p>
-          </div>
-        ))
-    : [];
+  console.log(cryptodata);
+
+  dataa.map(([key, item]) => (
+    <div
+      key={key}
+      className="stat-card bg-gradient-to-br from-white to-[#f0f5ff] hover:from-[#f0f5ff] hover:to-white p-5 rounded-xl shadow-md border border-[#e0e5f0] transition-all"
+    >
+      <h2 className="crypto-name text-sm text-zinc-500 mb-2">
+        {item.prices.symbol}
+      </h2>
+      <p className="crypto-price text-xl font-semibold text-[#1a1a1a]">
+        {Math.floor(item.prices.price)}
+      </p>
+    </div>
+  ));
 
   return (
     <div className="crypto-stats grid grid-cols-4 gap-6 mb-10">
-      {data ? (
+      {dataa ? (
         cards
       ) : (
         <h1 className="text-[#0040ff] pl-2 text-2xl font-medium animate-pulse">

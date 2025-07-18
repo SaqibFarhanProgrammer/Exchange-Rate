@@ -7,13 +7,11 @@ import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import axios from "axios";
 import cryptodata from "../Cryptodata";
-
 const Dashboard = () => {
   const [data, setdata] = useState();
 
   useEffect(() => {
     console.log(cryptodata);
-    setdata(cryptodata);
   }, []);
 
   return (
