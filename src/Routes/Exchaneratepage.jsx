@@ -1,7 +1,6 @@
 import React from "react";
-const Exchaneratepage = ({ dataa }) => {
+const Exchaneratepage = () => {
   // Sample data for exchange rates
-  console.log("Exchange Rate Data:", dataa);
 
   return (
     <div className=" exchange-rates-table w-full h-screen overflow-y-scroll  bg-white p-6 border text-black  border-[#e0e5f0]">

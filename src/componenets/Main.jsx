@@ -5,7 +5,7 @@ import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 
 const Dashboard = () => {
-  const [exchangeData, setExchangeData] = useState(null);
+  const [exchangeData, setExchangeData] = useState();
 
   useEffect(() => {
     const getRates = async () => {
