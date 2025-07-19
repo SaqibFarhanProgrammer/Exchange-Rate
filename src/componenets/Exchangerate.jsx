@@ -22,30 +22,6 @@ const Exchangerate = ({ dataa }) => {
       change: "+2.34%",
       trend: "up",
     },
-    {
-      currency: "Ethereum (ETH)",
-      rate: "3,245.67",
-      change: "+1.12%",
-      trend: "up",
-    },
-    {
-      currency: "Ripple (XRP)",
-      rate: "0.96",
-      change: "-0.45%",
-      trend: "down",
-    },
-    {
-      currency: "Solana (SOL)",
-      rate: "150.21",
-      change: "+5.67%",
-      trend: "up",
-    },
-    {
-      currency: "Cardano (ADA)",
-      rate: "1.45",
-      change: "-1.23%",
-      trend: "down",
-    },
   ];
 
   return (
