@@ -37,7 +37,7 @@ const Exchaneratepage = ({ currencydata }) => {
                   ></td>
                   <td className="py-4">
                     <div className="trend-indicator h-8 w-24 bg-gradient-to-r from-[#f0f5ff] to-white rounded flex items-center justify-center text-[#0040ff] text-xs">
-                      Trend
+                      Trenda
                     </div>
                   </td>
                 </tr>
