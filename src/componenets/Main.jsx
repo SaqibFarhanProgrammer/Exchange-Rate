@@ -5,8 +5,7 @@ import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 
 const Dashboard = () => {
-  const [data, setdata] = useState();
-  const [exchange, setexchange] = useState();
+  const [exchangeData, setExchangeData] = useState(null);
 
   useEffect(() => {
     const getRates = async () => {
@@ -14,8 +13,7 @@ const Dashboard = () => {
         "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
       );
       const datas = await res.json();
-      setexchange(datas);
-      console.log("Exchange Rate Data:", datas);
+      setExchangeData(datas);
     };
 
     getRates();
@@ -38,7 +36,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <Cryptocards data={data} />
+        <Cryptocards />
 
         <div className="dashboard-content grid grid-cols-3 gap-6">
           <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
@@ -53,7 +51,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
-              <Chart data={data} datas={Exchangerate} />
+              <Chart datas={Exchangerate} />
             </div>
           </div>
 
@@ -113,7 +111,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Exchangerate dataa={exchange} />
+        <Exchangerate dataa={exchangeData} />
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ const CryptoPriceUI = () => {
   ));
 
   return (
-    <div className="cryptoprice flex gap-1  flex-wrap hide-scrollbar  overflow-y-scroll items-center justify-center h-screen bg-gradient-to-b from-[#e0e7ff] to-[#f7f9ff] text-[#1a1a1a]">
+    <div className="cryptoprice flex gap-1 flex-col  flex-wrap hide-scrollbar  overflow-y-scroll items-center justify-center h-screen bg-gradient-to-b from-[#e0e7ff] to-[#f7f9ff] text-[#1a1a1a]">
       {cards.length > 0 ? (
         cards
       ) : (
