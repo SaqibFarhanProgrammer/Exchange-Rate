@@ -4,7 +4,7 @@ import Chart from "../subcomponent/Chart";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 
-const Dashboard = () => {
+const Dashboard = ({ getcurrencydata }) => {
   const [exchangeData, setExchangeData] = useState();
 
   useEffect(() => {
@@ -18,6 +18,12 @@ const Dashboard = () => {
 
     getRates();
   }, []);
+
+  useEffect(() => {
+    if (exchangeData) {
+      getcurrencydata(exchangeData);
+    }
+  }, [exchangeData, getcurrencydata]);
 
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
