@@ -27,26 +27,7 @@ const Sidebar = () => {
             <FaChartLine className="icon text-[#0040ff]" />
             Market
           </Link>
-
           <Link
-            onClick={() => {
-              setTimeout(() => {
-                <div className="navigate h-screen w-full bg-blue-900 absolute top-0 left-0 "></div>;
-              }, 1000);
-            }}
-            to="/converter"
-            className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
-          >
-            <FaBitcoin className="icon text-[#f7931a]" />
-            Convertor
-          </Link>
-
-          <Link
-            onClick={() => {
-              setTimeout(() => {
-                <div className="navigate h-screen w-full bg-blue-900 absolute top-0 left-0 "></div>;
-              }, 1000);
-            }}
             to="/profile"
             className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
           >
@@ -55,11 +36,14 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            onClick={() => {
-              setTimeout(() => {
-                <div className="navigate h-screen w-full bg-blue-900 absolute top-0 left-0 "></div>;
-              }, 1000);
-            }}
+            to="/converter"
+            className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
+          >
+            <FaBitcoin className="icon text-[#f7931a]" />
+            Convertor
+          </Link>
+
+          <Link
             to="/exchange"
             className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
           >

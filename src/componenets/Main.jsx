@@ -14,6 +14,7 @@ const Dashboard = ({ getcurrencydata }) => {
       );
       const datas = await res.json();
       setExchangeData(datas);
+      console.log("Exchange Data:", datas);
     };
 
     getRates();
@@ -28,22 +29,7 @@ const Dashboard = ({ getcurrencydata }) => {
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
       <div className="main-content flex-1 p-10 overflow-y-auto">
-        <div className="search-container mb-8">
-          <div className="search-bar relative flex justify-between">
-            <FaSearch className="search-icon absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0040ff]" />
-            <input
-              type="text"
-              placeholder="Search cryptocurrencies..."
-              className="search-input w-full pl-10 pr-4 py-3 rounded-lg bg-white border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff] shadow-sm"
-            />
-            <button className="m-.5 convert-button bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-2 px-7 rounded-lg font-semibold text-white transition">
-              Search
-            </button>
-          </div>
-        </div>
-
         <Cryptocards />
-
         <div className="dashboard-content grid grid-cols-3 gap-6">
           <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
             <div className="chart-header flex justify-between items-center mb-4">

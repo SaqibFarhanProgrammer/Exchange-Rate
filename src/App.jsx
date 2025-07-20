@@ -21,12 +21,12 @@ function App() {
         <Sidebar />
         <div className="flex-1  overflow-y-scroll">
           <Routes>
+            <Route path="/profile" element={<Profileroute />} />
             <Route
               path="/"
               element={<Main getcurrencydata={getcurrencydata} />}
             />
             <Route path="/converter" element={<Convertorroute />} />
-            <Route path="/profile" element={<Profileroute />} />
             <Route
               path="/exchange"
               element={<Exchangeroute currencydata={currencydata} />}
