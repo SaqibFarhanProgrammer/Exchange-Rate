@@ -1,4 +1,5 @@
 import React from "react";
+import { data } from "react-router-dom";
 const Exchaneratepage = ({ currencydata }) => {
   // Sample data for exchange rates
 
@@ -32,9 +33,13 @@ const Exchaneratepage = ({ currencydata }) => {
                   </td>
                   <td
                     className={`py-4 ${
-                      rate === "up" ? "text-[#00a661]" : "text-[#ff3b30]"
+                      rate === "down" ? "text-[#00a661]" : "text-[#ff3b30]"
                     }`}
-                  ></td>
+                  >
+                    {rate >= 0
+                      ? Math.random().toFixed(2) * 100 + "%"
+                      : Math.random().toFixed(2) * -100 + "%"}
+                  </td>
                   <td className="py-4">
                     <div className="trend-indicator h-8 w-24 bg-gradient-to-r from-[#f0f5ff] to-white rounded flex items-center justify-center text-[#0040ff] text-xs">
                       Trenda
