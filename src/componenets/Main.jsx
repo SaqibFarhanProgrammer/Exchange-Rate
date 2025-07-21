@@ -14,7 +14,6 @@ const Dashboard = ({ getcurrencydata }) => {
       );
       const datas = await res.json();
       setExchangeData(datas);
-      console.log("Exchange Data:", datas);
     };
 
     getRates();

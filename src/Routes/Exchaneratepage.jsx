@@ -68,7 +68,7 @@ const Exchaneratepage = ({ currencydata }) => {
       {/* Table Header */}
       <div className="hidden md:grid grid-cols-4 text-sm text-zinc-500 border-b border-[#e0e5f0] pb-3">
         <div>Currency</div>
-        <div>Rate (USD)</div>
+        <div>Rate </div>
         <div>24h Change</div>
         <div>Chart</div>
       </div>

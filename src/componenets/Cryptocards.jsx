@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import cryptodata from "../Cryptodata";
 
 const Cryptocards = () => {
-  // Create cards from cryptodata
   const cards = Object.entries(cryptodata.prices)
     .slice(0, 4)
     .map(([key, item]) => (
