@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const Exchaneratepage = ({ currencydata }) => {
   const [input, setInput] = useState("");
   const [filteredRates, setFilteredRates] = useState(null);
   const [error, setError] = useState(null);
+  useEffect(() => {}, []);
 
   const filtercurrencycode = () => {
     try {
@@ -34,6 +35,9 @@ const Exchaneratepage = ({ currencydata }) => {
       setFilteredRates(null);
     }
   };
+  useEffect(() => {
+    filtercurrencycode();
+  }, [input]);
 
   const displayRates = useMemo(() => {
     return filteredRates || currencydata?.conversion_rates;
@@ -51,12 +55,6 @@ const Exchaneratepage = ({ currencydata }) => {
             placeholder="Search currencies..."
             className="search-input w-full pl-10 pr-4 py-3 rounded-lg bg-white border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff] shadow-sm"
           />
-          <button
-            onClick={filtercurrencycode}
-            className="m-.5 convert-button bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-2 px-7 rounded-lg font-semibold text-white transition"
-          >
-            Search
-          </button>
         </div>
         {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
       </div>
