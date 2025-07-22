@@ -4,7 +4,10 @@ import Chart from "../subcomponent/Chart";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Currencyconvertor from "./Currencyconvertor";
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 
@@ -51,8 +54,11 @@ const Dashboard = ({ getcurrencydata }) => {
           </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Currencyconvertor />
 =======
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
           <div className="currency-converter bg-white p-6 rounded-xl border border-[#e0e5f0]">
             <h3 className="section-title text-lg font-medium mb-6 text-[#1a1a1a]">
               Currency Converter
@@ -108,6 +114,9 @@ const Dashboard = ({ getcurrencydata }) => {
               </button>
             </div>
           </div>
+<<<<<<< HEAD
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
+=======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
         </div>
         <Exchangerate dataa={exchangeData} />

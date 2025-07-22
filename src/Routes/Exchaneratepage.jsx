@@ -2,7 +2,11 @@ import React, { useState, useMemo, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const Exchaneratepage = () => {
+=======
+const Exchaneratepage = ({ currencydata }) => {
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 const Exchaneratepage = ({ currencydata }) => {
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
@@ -77,7 +81,11 @@ const Exchaneratepage = ({ currencydata }) => {
 
       {/* Table Rows */}
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className="table-rows w-full flex flex-col gap-4 mt-4">
+=======
+      <div className="table-rows flex flex-col gap-4 mt-4">
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
       <div className="table-rows flex flex-col gap-4 mt-4">
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977

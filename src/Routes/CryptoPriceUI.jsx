@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from "react";
 import cryptodata from "../Cryptodata";
 
@@ -21,6 +22,8 @@ const CryptoPriceUI = () => {
         </h2>
 
 =======
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 import React, { use, useEffect, useState } from "react";
 import cryptodata from "../Cryptodata";
 
@@ -48,6 +51,9 @@ const CryptoPriceUI = () => {
         <h2 className="crypto-name text-sm text-zinc-500 mb-2">
           {item.symbol}
         </h2>
+<<<<<<< HEAD
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
+=======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
         <span
           className={`text-xs px-2 py-1 rounded ${
@@ -72,7 +78,13 @@ const CryptoPriceUI = () => {
         <div className="relative flex items-center w-[80vw] sm:w-[40vw]">
           <input
 <<<<<<< HEAD
+<<<<<<< HEAD
             onChange={(e) => setInput(e.target.value)}
+=======
+            onChange={(e) => {
+              setinput(e.target.value);
+            }}
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
             onChange={(e) => {
               setinput(e.target.value);
@@ -84,11 +96,14 @@ const CryptoPriceUI = () => {
             placeholder="Search Cryptocurrency"
           />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div className="absolute right-2 p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-gray-400"
 =======
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
           <button
             onClick={filterCryptocurrencies}
             className="absolute right-2 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md transition-colors"
@@ -96,6 +111,9 @@ const CryptoPriceUI = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
+<<<<<<< HEAD
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
+=======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
               fill="none"
               viewBox="0 0 24 24"
@@ -109,7 +127,11 @@ const CryptoPriceUI = () => {
               />
             </svg>
 <<<<<<< HEAD
+<<<<<<< HEAD
           </div>
+=======
+          </button>
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
           </button>
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
@@ -122,7 +144,11 @@ const CryptoPriceUI = () => {
         ) : (
           <h1 className="text-[#0040ff] text-2xl font-medium animate-pulse">
 <<<<<<< HEAD
+<<<<<<< HEAD
             No cryptocurrencies found
+=======
+            Loading...
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
             Loading...
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977

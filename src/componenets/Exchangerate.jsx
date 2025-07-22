@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useEffect } from "react";
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 import React, { useEffect } from "react";
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
@@ -14,6 +18,7 @@ const Exchangerate = ({ dataa }) => {
     );
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   // Mock function for trend data - replace with real data if available
   const getTrendData = () => {
@@ -25,6 +30,8 @@ const Exchangerate = ({ dataa }) => {
     };
   };
 
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
   return (
@@ -48,7 +55,10 @@ const Exchangerate = ({ dataa }) => {
               .slice(0, 8)
               .map(([currency, rate]) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 const trend = getTrendData();
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
                 return (
@@ -62,6 +72,7 @@ const Exchangerate = ({ dataa }) => {
                     </td>
                     <td className="py-4">
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <div
                         className={`flex items-center text-sm ${
                           trend.isPositive ? "text-green-500" : "text-red-500"
@@ -72,6 +83,8 @@ const Exchangerate = ({ dataa }) => {
                       </div>
                     </td>
                     <td className="py-4">
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
 =======
 >>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
                       <div className="trend-indicator h-8 w-24 bg-gradient-to-r from-[#f0f5ff] to-white rounded flex items-center justify-center text-[#0040ff] text-xs">
