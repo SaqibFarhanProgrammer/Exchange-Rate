@@ -45,9 +45,9 @@ const Exchaneratepage = ({ currencydata }) => {
   }, [filteredRates, currencydata]);
 
   return (
-    <div className="exchange-rates-table w-full flex-col h-screen overflow-y-scroll bg-white p-6 border text-black border-[#e0e5f0]">
+    <div className="exchange-rates-table w-full mt-20 flex-col h-screen overflow-y-scroll bg-white p-6 border text-black border-[#e0e5f0]">
       {/* Search Input */}
-      <div className="search-container mb-8">
+      <div className="search-container top-4 fixed w-[77%] mb-8">
         <div className="search-bar relative flex justify-between">
           <FaSearch className="search-icon absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0040ff]" />
           <input
@@ -55,10 +55,10 @@ const Exchaneratepage = ({ currencydata }) => {
             type="text"
             value={input}
             placeholder="Search currencies..."
-            className="search-input w-full pl-10 pr-4 py-3 rounded-lg bg-white border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff] shadow-sm"
+            className="search-input backdrop-blur-md w-full pl-10 pr-4 py-3 rounded-lg border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff] shadow-sm"
           />
         </div>
-        {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+        {error && <div className="tex t-red-500 text-sm mt-2">{error}</div>}
       </div>
 
       {/* Table Title */}

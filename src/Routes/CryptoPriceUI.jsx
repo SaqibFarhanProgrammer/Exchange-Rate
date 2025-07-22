@@ -47,13 +47,13 @@ const CryptoPriceUI = () => {
 
   return (
     <div className="cryptoprice w-full flex flex-col items-center bg-gradient-to-b from-[#e0e7ff] to-[#f7f9ff] text-[#1a1a1a] min-h-screen">
-      <div className="search w-full pt-4 flex items-center justify-center">
+      <div className="search w-full fixed  pt-4 flex items-center justify-center">
         <div className="relative flex items-center w-[80vw] sm:w-[40vw]">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             type="text"
-            className="w-full p-3 pr-12 rounded-lg border border-[#d1d5db] focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            className="w-full p-3 pr-12 rounded-lg backdrop-blur-lg border border-[#d1d5db] focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             placeholder="Search Cryptocurrency"
           />
           <button
@@ -78,7 +78,7 @@ const CryptoPriceUI = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-8 py-6 flex flex-wrap justify-center">
+      <div className="w-full mt-10 px-4 sm:px-8 py-6 flex flex-wrap justify-center">
         {cards.length > 0 ? (
           cards
         ) : (
