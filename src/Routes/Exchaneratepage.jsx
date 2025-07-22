@@ -96,7 +96,7 @@ const Exchaneratepage = ({ currencydata }) => {
                     }`}
                   >
                     {isPositive ? "+" : ""}
-                    {change}%
+                    {change}
                   </span>
                 </div>
                 <div>
