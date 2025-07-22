@@ -1,28 +1,70 @@
-import { isArray } from "chart.js/helpers";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 const Currencyconvertor = () => {
   const [currencycode, setcurrencycode] = useState([]);
-  const [from, setfrom] = useState("");
-  const [to, setto] = useState("");
+  const [from, setfrom] = useState("USD");
+  const [to, setto] = useState("PKR");
   const [amount, setamount] = useState("");
-  const [convertedrate, setconvertedrate] = useState("");
-  console.log(from);
-  console.log(to);
+  const [convertedamount, setconvertedamount] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const getRates = async () => {
-    const res = await fetch(
-      "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
-    );
-    const datas = await res.json();
-    setcurrencycode(Object.entries(datas.conversion_rates));
-    console.log(datas);
+    try {
+      const res = await fetch(
+        "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
+      );
+      const datas = await res.json();
+      if (datas.result === "success") {
+        setcurrencycode(Object.entries(datas.conversion_rates));
+      } else {
+        throw new Error(datas["error-type"] || "Failed to fetch currencies");
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error(err);
+    }
+  };
+
+  const convert = async () => {
+    if (!amount || amount <= 0) {
+      setconvertedamount("");
+      return;
+    }
+
+    if (from === to) {
+      setconvertedamount(amount);
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/pair/${from}/${to}/${amount}`
+      );
+      const data = await res.json();
+      if (data.result === "success") {
+        setconvertedamount(data.conversion_result.toFixed(4));
+      } else {
+        throw new Error(data["error-type"] || "Conversion failed");
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error(err);
+    }
   };
 
   useEffect(() => {
     getRates();
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    convert();
+  };
 
   return (
     <div>
@@ -30,7 +72,17 @@ const Currencyconvertor = () => {
         <h3 className="section-title text-lg font-medium mb-6 text-[#1a1a1a]">
           Currency Converter
         </h3>
-        <div className="converter-form flex flex-col gap-4">
+
+        {error && (
+          <div className="error-message mb-4 p-2 bg-red-100 text-red-700 rounded">
+            {error}
+          </div>
+        )}
+
+        <form
+          onSubmit={handleSubmit}
+          className="converter-form flex flex-col gap-4"
+        >
           <div className="form-group">
             <label className="input-label text-sm text-zinc-500">Amount</label>
             <div className="amount-input-container flex gap-2">
@@ -39,12 +91,14 @@ const Currencyconvertor = () => {
                 value={amount}
                 onChange={(e) => setamount(e.target.value)}
                 placeholder="100"
+                min="0"
+                step="0.01"
                 className="amount-input w-[80%] flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
+                required
               />
               <select
-                onChange={(e) => {
-                  setfrom(e.target.value);
-                }}
+                value={from}
+                onChange={(e) => setfrom(e.target.value)}
                 className="currency-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
               >
                 {currencycode.map(([code]) => (
@@ -64,21 +118,19 @@ const Currencyconvertor = () => {
 
           <div className="form-group">
             <label className="input-label text-sm text-zinc-500">
-              Converted
+              Converted Amount
             </label>
             <div className="converted-input-container flex gap-2">
               <input
-                type="number"
-                value={to}
-                onChange={(e) => setto(e.target.value)}
-                placeholder="0.0021"
+                type="text"
+                value={isLoading ? "Converting..." : convertedamount || ""}
+                placeholder="0.00"
                 className="converted-input w-[80%] flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
                 readOnly
               />
               <select
-                onChange={(e) => {
-                  setto(e.target.value);
-                }}
+                value={to}
+                onChange={(e) => setto(e.target.value)}
                 className="crypto-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
               >
                 {currencycode.map(([code]) => (
@@ -90,10 +142,14 @@ const Currencyconvertor = () => {
             </div>
           </div>
 
-          <button className="convert-button mt-2 bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-3 rounded-lg font-semibold text-white transition">
-            Convert Now
+          <button
+            type="submit"
+            className="convert-button mt-2 bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-3 rounded-lg font-semibold text-white transition disabled:opacity-50"
+            disabled={isLoading}
+          >
+            {isLoading ? "Converting..." : "Convert Now"}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
