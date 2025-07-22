@@ -1,0 +1,119 @@
+import React, { useContext, useEffect, useState } from "react";
+import { FaBitcoin, FaSearch, FaArrowRight } from "react-icons/fa";
+import Chart from "../subcomponent/Chart";
+import Cryptocards from "./Cryptocards";
+import Exchangerate from "./Exchangerate";
+<<<<<<< HEAD
+import Currencyconvertor from "./Currencyconvertor";
+=======
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
+
+const Dashboard = ({ getcurrencydata }) => {
+  const [exchangeData, setExchangeData] = useState();
+
+  useEffect(() => {
+    const getRates = async () => {
+      const res = await fetch(
+        "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
+      );
+      const datas = await res.json();
+      setExchangeData(datas);
+    };
+
+    getRates();
+  }, []);
+
+  useEffect(() => {
+    if (exchangeData) {
+      getcurrencydata(exchangeData);
+    }
+  }, [exchangeData, getcurrencydata]);
+
+  return (
+    <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
+      <div className="main-content flex-1 p-10 overflow-y-auto">
+        <Cryptocards />
+        <div className="dashboard-content grid grid-cols-3 gap-6">
+          <div className="market-chart col-span-2 bg-white p-6 rounded-xl border border-[#e0e5f0]">
+            <div className="chart-header flex justify-between items-center mb-4">
+              <h3 className="section-title text-lg font-medium text-[#1a1a1a]">
+                Market Trends
+              </h3>
+              <div className="time-filters flex gap-2">
+                <button className="time-filter-btn px-3 py-1 text-x6 bg-[#f0f5ff] rounded-md text-[#0040ff]">
+                  20$
+                </button>
+              </div>
+            </div>
+            <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
+              <Chart datas={Exchangerate} />
+            </div>
+          </div>
+
+<<<<<<< HEAD
+          <Currencyconvertor />
+=======
+          <div className="currency-converter bg-white p-6 rounded-xl border border-[#e0e5f0]">
+            <h3 className="section-title text-lg font-medium mb-6 text-[#1a1a1a]">
+              Currency Converter
+            </h3>
+            <div className="converter-form flex flex-col gap-4">
+              <div className="form-group">
+                <label className="input-label text-sm text-zinc-500">
+                  Amount
+                </label>
+                <div className="amount-input-container flex gap-2">
+                  <input
+                    type="number"
+                    placeholder="100"
+                    className="amount-input flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
+                  />
+                  <select className="currency-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>INR</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="conversion-arrow flex justify-center">
+                <div className="arrow-icon bg-[#f0f5ff] p-2 rounded-full text-[#0040ff]">
+                  <FaArrowRight />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="input-label text-sm text-zinc-500">
+                  Converted
+                </label>
+                <div className="converted-input-container flex gap-2">
+                  <input
+                    type="number"
+                    placeholder="0.0021"
+                    className="converted-input flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
+                    readOnly
+                  />
+                  <select className="crypto-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]">
+                    <option>BTC</option>
+                    <option>ETH</option>
+                    <option>SOL</option>
+                    <option>XRP</option>
+                  </select>
+                </div>
+              </div>
+
+              <button className="convert-button mt-2 bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-3 rounded-lg font-semibold text-white transition">
+                Convert Now
+              </button>
+            </div>
+          </div>
+>>>>>>> 00bc0f01c333edb171e3b18f410e3b1e62d00977
+        </div>
+        <Exchangerate dataa={exchangeData} />
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
