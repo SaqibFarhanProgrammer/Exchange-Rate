@@ -69,7 +69,7 @@ const Currencyconvertor = () => {
             <div className="converted-input-container flex gap-2">
               <input
                 type="number"
-                value={setto}
+                value={to}
                 onChange={(e) => setto(e.target.value)}
                 placeholder="0.0021"
                 className="converted-input w-[80%] flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
