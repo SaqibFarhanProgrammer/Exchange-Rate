@@ -13,10 +13,10 @@ const Chart = ({ datas }) => {
   const numdata = parseFloat(datas) || 0;
 
   const data = [
-    { name: "Jan", uv: 100 },
-    { name: "Feb", uv: 200 },
-    { name: "Mar", uv: 500 },
-    { name: "Apr", uv: numdata },
+    { name: "", uv: 100 },
+    { name: "", uv: 200 },
+    { name: "", uv: 500 },
+    { name: "", uv: numdata },
   ];
 
   return (

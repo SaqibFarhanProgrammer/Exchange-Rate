@@ -5,7 +5,7 @@ const ExchangeRatePage = ({ dataa }) => {
   const displayRates = dataa?.conversion_rates || {};
 
   return (
-    <div className="exchange-rates-table w-full h-screen overflow-y-auto bg-white p-6 border border-[#e0e5f0] text-black">
+    <div className="exchange-rates-table mt-3 w-full h-screen overflow-y-auto bg-white p-6 border border-[#e0e5f0] text-black">
       <h3 className="text-2xl font-semibold mb-8 text-[#1a1a1a]">
         Exchange Rates Overview
       </h3>

@@ -3,6 +3,7 @@ import Chart from "../subcomponent/Chart";
 import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import Currencyconvertor from "./Currencyconvertor";
+import Profile from "../componenets/Prifile";
 
 const Dashboard = ({ getcurrencydata }) => {
   const [exchangeData, setExchangeData] = useState();
@@ -32,6 +33,7 @@ const Dashboard = ({ getcurrencydata }) => {
 
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
+      <Profile />
       <div className="main-content flex-1 p-10 overflow-y-auto">
         <Cryptocards />
         <div className="dashboard-content grid grid-cols-3 gap-6">
