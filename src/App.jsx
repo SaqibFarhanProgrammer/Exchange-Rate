@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      {/* <div className="App bg-zinc-900 w-full h-screen flex">
+      <div className="App bg-zinc-900 w-full h-screen flex">
         <Sidebar />
         <div className="flex-1  overflow-y-scroll">
           <Routes>
@@ -35,8 +35,7 @@ function App() {
             <Route path="/crypto" element={<CryptoPriceUI />} />
           </Routes>
         </div>
-      </div> */}
-      <Login />
+      </div>
     </Router>
   );
 }
