@@ -4,6 +4,7 @@ import Cryptocards from "./Cryptocards";
 import Exchangerate from "./Exchangerate";
 import Currencyconvertor from "./Currencyconvertor";
 import Profile from "../componenets/Prifile";
+import Login from "../Auth/Login";
 
 const Dashboard = ({ getcurrencydata }) => {
   const [exchangeData, setExchangeData] = useState();

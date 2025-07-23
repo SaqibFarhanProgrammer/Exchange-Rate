@@ -8,6 +8,7 @@ import Profileroute from "./Routes/Profileroutepage";
 import Exchangeroute from "./Routes/Exchaneratepage";
 import CryptoPriceUI from "./Routes/CryptoPriceUI";
 import { useEffect, useState } from "react";
+import Login from "./Auth/Login";
 
 function App() {
   const [currencydata, setcurrencydata] = useState();
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App bg-zinc-900 w-full h-screen flex">
+      {/* <div className="App bg-zinc-900 w-full h-screen flex">
         <Sidebar />
         <div className="flex-1  overflow-y-scroll">
           <Routes>
@@ -34,7 +35,8 @@ function App() {
             <Route path="/crypto" element={<CryptoPriceUI />} />
           </Routes>
         </div>
-      </div>
+      </div> */}
+      <Login />
     </Router>
   );
 }
