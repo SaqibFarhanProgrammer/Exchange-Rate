@@ -2,23 +2,22 @@ import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import currencycode from "./Currencycodes";
 const DashboardContent = () => {
-  const [from, setfrom] = useState("USD");
-  const [to, setto] = useState("PKR");
-  const [amout, setamout] = useState("");
-  const [convertedresult, setConverted] = useState("");
+  const [from, setfrom] = useState("");
+  const [to, setto] = useState("");
+  const [amout, setamout] = useState("1");
+  const [converted, setconverted] = useState();
   const [loading, setloading] = useState(false);
 
-  const getdata = async () => {
+  const convert = async () => {
     const res = await fetch(
       `https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/pair/${from}/${to}/${amout}`
     );
-    const data = res.json();
-    console.log(data);
+    const data = await res.json();
+    setconverted(data?.conversion_result);
+    setloading(false);
   };
 
-  useEffect(() => {
-    getdata();
-  }, []);
+  console.log(converted);
 
   return (
     <div className="bg-white p-6  h-screen w-full border border-[#e0e5f0] shadow-sm">
@@ -33,6 +32,8 @@ const DashboardContent = () => {
             <input
               type="number"
               placeholder="100"
+              value={amout}
+              onChange={(e) => setamout(e.target.value)}
               className="flex-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:ring-2 focus:ring-[#0040ff]"
             />
             <select
@@ -61,6 +62,7 @@ const DashboardContent = () => {
               type="number"
               placeholder="0.0021"
               readOnly
+              value={Math.floor(converted)}
               className="flex-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none"
             />
 
@@ -77,7 +79,10 @@ const DashboardContent = () => {
           </div>
         </div>
 
-        <button className="mt-2 w-full bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-3 rounded-xl text-white font-semibold transition shadow-md">
+        <button
+          onClick={convert}
+          className="mt-2 w-full bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:from-[#0033cc] hover:to-[#0099dd] py-3 rounded-xl text-white font-semibold transition shadow-md"
+        >
           Convert Now
         </button>
       </div>

@@ -10,19 +10,22 @@ import {
 } from "recharts";
 
 const Chart = ({ datas }) => {
-  const numdata = parseInt(datas);
+  const numdata = parseFloat(datas) || 0;
 
   const data = [
     { name: "Jan", uv: 100 },
     { name: "Feb", uv: 200 },
     { name: "Mar", uv: 500 },
-    { name: "Mar", uv: numdata },
+    { name: "Apr", uv: numdata },
   ];
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-[300px] overflow-hidden">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data}>
+        <AreaChart
+          data={data}
+          margin={{ top: 25, right: 0, left: 0, bottom: 0 }}
+        >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#0040ff" stopOpacity={0.5} />
@@ -30,11 +33,10 @@ const Chart = ({ datas }) => {
             </linearGradient>
           </defs>
 
-          <CartesianGrid strokeDasharray="1 3" stroke="#d0d7ff" />
-
+          <XAxis dataKey="name" />
           <Tooltip
             contentStyle={{
-              background: "linear-gradient(#0040ff, #hover, ##5e34eb)",
+              background: "#f5f9ff",
               border: "1px solid #0040ff",
               color: "#0040ff",
             }}

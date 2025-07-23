@@ -34,7 +34,6 @@ const Currencyconvertor = ({ getchartdata }) => {
         `https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/pair/${from}/${to}/${amount}`
       );
       const data = await res.json();
-      console.log(data);
 
       if (data.result === "success") {
         setconvertedamount(data.conversion_result.toFixed(4));
