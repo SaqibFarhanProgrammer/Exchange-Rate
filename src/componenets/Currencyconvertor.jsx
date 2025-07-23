@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import currencyCodes from "../Routes/Currencycodes";
 
-const Currencyconvertor = () => {
+const Currencyconvertor = ({ getchartdata }) => {
   const [currencycode, setcurrencycode] = useState([]);
   const [from, setfrom] = useState("USD");
   const [to, setto] = useState("PKR");
@@ -9,32 +10,19 @@ const Currencyconvertor = () => {
   const [convertedamount, setconvertedamount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const getRates = async () => {
-    try {
-      const res = await fetch(
-        "https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/latest/USD"
-      );
-      const datas = await res.json();
-      if (datas.result === "success") {
-        setcurrencycode(Object.entries(datas.conversion_rates));
-      } else {
-        throw new Error(datas["error-type"] || "Failed to fetch currencies");
-      }
-    } catch (err) {
-      setError(err.message);
-      console.error(err);
-    }
-  };
+  const [passdatatochart, setpassdatatochart] = useState("");
 
   const convert = async () => {
     if (!amount || amount <= 0) {
       setconvertedamount("");
+      setIsLoading(false);
       return;
     }
 
     if (from === to) {
       setconvertedamount(amount);
+      setIsLoading(false);
+
       return;
     }
 
@@ -46,6 +34,8 @@ const Currencyconvertor = () => {
         `https://v6.exchangerate-api.com/v6/49b5574c42f33e2979fd8b8c/pair/${from}/${to}/${amount}`
       );
       const data = await res.json();
+      console.log(data);
+
       if (data.result === "success") {
         setconvertedamount(data.conversion_result.toFixed(4));
       } else {
@@ -54,17 +44,21 @@ const Currencyconvertor = () => {
     } catch (err) {
       setError(err.message);
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    getRates();
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     convert();
   };
+
+  function extractdatachart() {
+    getchartdata(convertedamount);
+  }
+
+  extractdatachart();
 
   return (
     <div>
@@ -101,7 +95,7 @@ const Currencyconvertor = () => {
                 onChange={(e) => setfrom(e.target.value)}
                 className="currency-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
               >
-                {currencycode.map(([code]) => (
+                {currencyCodes.map((code) => (
                   <option key={code} value={code}>
                     {code}
                   </option>
@@ -123,7 +117,11 @@ const Currencyconvertor = () => {
             <div className="converted-input-container flex gap-2">
               <input
                 type="text"
-                value={isLoading ? "Converting..." : convertedamount || ""}
+                value={
+                  isLoading
+                    ? "Converting..."
+                    : Math.floor(convertedamount) || ""
+                }
                 placeholder="0.00"
                 className="converted-input w-[80%] flex-1 mt-1 px-4 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
                 readOnly
@@ -133,7 +131,7 @@ const Currencyconvertor = () => {
                 onChange={(e) => setto(e.target.value)}
                 className="crypto-selector mt-1 px-3 py-2 rounded-lg bg-[#f7f9ff] text-[#1a1a1a] border border-[#e0e5f0] focus:outline-none focus:border-[#0040ff]"
               >
-                {currencycode.map(([code]) => (
+                {currencyCodes.map((code) => (
                   <option key={code} value={code}>
                     {code}
                   </option>

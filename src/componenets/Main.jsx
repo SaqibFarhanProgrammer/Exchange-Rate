@@ -6,6 +6,7 @@ import Currencyconvertor from "./Currencyconvertor";
 
 const Dashboard = ({ getcurrencydata }) => {
   const [exchangeData, setExchangeData] = useState();
+  const [chartamout, setchartamout] = useState("");
 
   useEffect(() => {
     const getRates = async () => {
@@ -25,6 +26,10 @@ const Dashboard = ({ getcurrencydata }) => {
     }
   }, [exchangeData, getcurrencydata]);
 
+  function getchartdata(params) {
+    setchartamout(params);
+  }
+
   return (
     <div className="dashboard-container min-h-screen flex h-screen w-full text-[#1a1a1a] bg-[#f7f9ff] font-sans">
       <div className="main-content flex-1 p-10 overflow-y-auto">
@@ -42,14 +47,14 @@ const Dashboard = ({ getcurrencydata }) => {
               </div>
             </div>
             <div className="chart-wrapper h-[240px] rounded-lg bg-gradient-to-tr from-[#e0f0ff] to-[#f0f5ff] flex items-center justify-center text-[#0040ff] font-semibold border border-[#e0e5f0]">
-              <Chart datas={exchangeData} />
+              <Chart datas={chartamout} />
             </div>
           </div>
 
-          <Currencyconvertor />
+          <Currencyconvertor getchartdata={getchartdata} />
         </div>
 
-        <Exchangerate dataa={exchangeData} />
+        <Exchangerate dataa={exchangeData} getchartdata={getchartdata} />
       </div>
     </div>
   );

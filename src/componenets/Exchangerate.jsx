@@ -18,7 +18,6 @@ const ExchangeRatePage = ({ dataa }) => {
         <div>Chart</div>
       </div>
 
-      {/* Table Body */}
       <div className="flex flex-col gap-5 mt-4">
         {Object.keys(displayRates).length > 0 ? (
           Object.entries(displayRates)
