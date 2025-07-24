@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaUserCircle, FaEnvelope, FaSignOutAlt, FaCog } from "react-icons/fa";
 import Login from "../Auth/Login";
 
@@ -34,92 +34,94 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-[#f4f6fc] font-sans w-full profile-wrapper">
+    <div className="h-screen w-full bg-[#f4f6fc] font-sans">
       {isLoggedIn ? (
-        <>
-          {/* Header */}
-          <div className="bg-gradient-to-r from-[#6b4eff] to-[#2d9cdb] text-white py-6 px-10 shadow-lg profile-header">
-            <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold logo">Crypto Profile</h1>
-              <div className="flex items-center gap-4 header-actions">
-                <button className="hover:text-zinc-100 settings-button">
-                  <FaCog className="text-lg" />
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-1 bg-white text-[#0040ff] px-4 py-2 rounded-xl text-sm hover:bg-opacity-90 transition font-semibold logout-button"
-                >
-                  <FaSignOutAlt />
-                  Logout
-                </button>
-              </div>
+        <div className="flex h-full">
+          <aside className="w-full max-w-xs bg-white shadow-md p-8 flex flex-col items-center text-center border-r border-zinc-100">
+            <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#0040ff] to-[#00aaff] overflow-hidden shadow-md">
+              <img
+                src={
+                  profileimage ||
+                  "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"
+                }
+                alt="profile"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
-          </div>
+            <h2 className="mt-4 text-xl font-semibold text-[#1a1a1a] tracking-tight">
+              {userprofiledata?.name || "No Name"}
+            </h2>
+            <button
+              onClick={handleLogout}
+              className="mt-6 flex items-center gap-2 bg-[#0040ff] text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 font-medium transition"
+            >
+              <FaSignOutAlt />
+              Logout
+            </button>
+          </aside>
 
-          {/* Profile Content */}
-          <div className="w-full mx-auto h-screen bg-white rounded-2xl shadow-xl p-8 grid grid-cols-1 md:grid-cols-3 gap-8 profile-content">
-            {/* Left Section (Profile Image + Name) */}
-            <div className="flex flex-col items-center text-center profile-sidebar">
-              <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#0040ff] to-[#00aaff] flex items-center justify-center shadow-lg profile-image-container">
-                <img
-                  className="rounded-full profile-image"
-                  src={profileimage}
-                  alt="Profile"
-                />
-              </div>
-              <h2 className="mt-4 text-xl font-semibold text-[#1a1a1a] profile-name">
-                {userprofiledata?.name || "No Name"}
-              </h2>
+          <main className="flex-1 p-10 overflow-y-auto">
+            <div className="flex items-center justify-between mb-10">
+              <h1 className="text-3xl font-semibold text-[#1a1a1a] tracking-tight">
+                My Profile
+              </h1>
+              <button className="text-[#0040ff] hover:text-[#0030cc] transition text-lg">
+                <FaCog />
+              </button>
             </div>
 
-            {/* Right Section (User Info) */}
-            <div className="md:col-span-2 space-y-4 profile-details">
-              <div className="profile-field">
-                <label className="text-xs text-zinc-500">Full Name</label>
-                <div className="bg-[#f5f8ff] p-3 rounded-xl shadow text-sm text-[#1a1a1a] font-medium">
+            <div className="space-y-6 max-w-2xl">
+              <div>
+                <label className="block text-sm text-zinc-500 mb-1">
+                  Full Name
+                </label>
+                <div className="bg-[#f6f8fe] p-4 rounded-lg text-sm font-medium text-[#1a1a1a] shadow-sm">
                   {userprofiledata?.name || "N/A"}
                 </div>
               </div>
 
-              <div className="profile-field">
-                <label className="text-xs text-zinc-500">Email</label>
-                <div className="flex items-center bg-[#f5f8ff] p-3 rounded-xl shadow text-sm text-[#1a1a1a] font-medium">
-                  <FaEnvelope className="mr-2 text-[#0040ff]" />
+              <div>
+                <label className="block text-sm text-zinc-500 mb-1">
+                  Email
+                </label>
+                <div className="flex items-center gap-2 bg-[#f6f8fe] p-4 rounded-lg text-sm font-medium text-[#1a1a1a] shadow-sm">
+                  <FaEnvelope className="text-[#0040ff]" />
                   {userprofiledata?.email || "N/A"}
                 </div>
               </div>
 
-              <div className="profile-field">
-                <label className="text-xs text-zinc-500">About Me</label>
-                <div className="bg-[#f5f8ff] p-3 rounded-xl shadow text-sm text-[#1a1a1a]">
+              <div>
+                <label className="block text-sm text-zinc-500 mb-1">
+                  About Me
+                </label>
+                <div className="bg-[#f6f8fe] p-4 rounded-lg text-sm text-[#1a1a1a] leading-relaxed shadow-sm">
                   {userprofiledata?.bio || "No bio provided."}
                 </div>
               </div>
             </div>
-          </div>
-        </>
+          </main>
+        </div>
       ) : (
-        // Login Page UI
-        <div className="flex flex-col justify-center items-center h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-50 p-6 login-screen">
-          <div className="w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden login-card">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center login-card-header">
-              <h2 className="text-3xl font-bold text-white mb-2 login-title">
+        <div className="login-screen flex flex-col justify-center items-center h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+          <div className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center">
+              <h2 className="text-3xl font-bold text-white">
                 Welcome to CryptoHub
               </h2>
+              <p className="text-white mt-2 text-sm">
+                Your personal crypto dashboard
+              </p>
             </div>
-
-            <div className="p-8 space-y-6 login-card-body">
+            <div className="p-8 space-y-6">
               <button
                 onClick={() => setShowAuthBox(true)}
-                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg login-button"
+                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md"
               >
                 <FaUserCircle className="text-xl" />
-                <span className="text-lg">Get Started - It's Free</span>
+                <span className="text-lg">Get Started – It's Free</span>
               </button>
             </div>
           </div>
-
-          {/* Login Modal */}
           {showAuthBox && (
             <Login
               onClose={handleCloseAuthBox}

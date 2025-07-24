@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 const CompactAuthBox = ({
@@ -41,8 +41,9 @@ const CompactAuthBox = ({
   function passimage() {
     getprfoileimage(previewImage);
   }
-
-  passimage();
+  useEffect(() => {
+    passimage();
+  }, []);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50">
