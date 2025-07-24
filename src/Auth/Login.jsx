@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
-const CompactAuthBox = ({ onClose }) => {
-  // Changed prop name to be more descriptive
+const CompactAuthBox = ({
+  onClose,
+  userdata,
+  handlesignup,
+  getprfoileimage,
+}) => {
   const [formData, setFormData] = useState({
+    img: "",
     name: "",
     email: "",
     password: "",
@@ -22,17 +27,26 @@ const CompactAuthBox = ({ onClose }) => {
     if (file) setPreviewImage(URL.createObjectURL(file));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", { ...formData, previewImage });
-    // Add your authentication logic here
-    onClose(); // Close modal after submission
+  const passdata = () => {
+    userdata({ ...formData });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    passdata(); // Send data to parent
+    handlesignup(); // Login success
+    onClose(); // Close modal
+  };
+
+  function passimage() {
+    getprfoileimage(previewImage);
+  }
+
+  passimage();
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center   backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50">
       <div className="w-full max-w-md mx-4 bg-white rounded-xl shadow-xl overflow-hidden">
-        {/* Header with close button */}
         <div className="flex justify-between items-center bg-blue-600 px-6 py-4">
           <h2 className="text-xl font-semibold text-white">Create Account</h2>
           <button
@@ -44,7 +58,6 @@ const CompactAuthBox = ({ onClose }) => {
         </div>
 
         <div className="p-6">
-          {/* Profile Image Upload */}
           <div className="flex justify-center mb-6">
             <div className="relative">
               <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow">
@@ -96,7 +109,6 @@ const CompactAuthBox = ({ onClose }) => {
             </div>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
