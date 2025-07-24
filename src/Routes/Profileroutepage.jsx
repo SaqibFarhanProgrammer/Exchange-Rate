@@ -1,21 +1,30 @@
 import React, { useState } from "react";
-import { FaUserCircle, FaEnvelope, FaSignOutAlt, FaCog } from "react-icons/fa";
-import Login from "../Auth/Login";
-import { FaBullseye } from "react-icons/fa6";
+import {
+  FaUserCircle,
+  FaEnvelope,
+  FaSignOutAlt,
+  FaCog,
+  FaGoogle,
+  FaTwitter,
+  FaGithub,
+} from "react-icons/fa";
+import CompactAuthBox from "../Auth/Login";
 
 const ProfilePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  const [showAuthBox, setShowAuthBox] = useState(false);
 
-  console.log(isLoggedIn);
-
-  const handleLogin = () => {
+  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    setShowLogin(false);
+    setShowAuthBox(false);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+  };
+
+  const handleCloseAuthBox = () => {
+    setShowAuthBox(false);
   };
 
   return (
@@ -86,19 +95,42 @@ const ProfilePage = () => {
             </div>
           </div>
         </>
-      ) : showLogin ? (
-        /* LOGIN PAGE */
-        <Login onLoginSuccess={handleLogin} />
       ) : (
-        /* LOGIN BUTTON */
-        <div className="flex justify-center items-center h-screen w-full">
-          <button
-            onClick={() => setShowLogin(true)}
-            type="button"
-            className="px-8 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"
-          >
-            Login
-          </button>
+        /* ENHANCED LOGIN SECTION */
+        <div className="flex flex-col justify-center items-center h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+          <div className="w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden transition-all duration-300 hover:shadow-3xl">
+            {/* Welcome Header with Animation */}
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center transform hover:scale-[1.02] transition-transform duration-300">
+              <h2 className="text-3xl font-bold text-white mb-2 animate-fade-in">
+                Welcome to CryptoHub
+              </h2>
+            </div>
+
+            {/* Login Button Section */}
+            <div className="p-8 space-y-6">
+              <div className="space-y-4">
+                <button
+                  onClick={() => setShowAuthBox(true)}
+                  className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-[0.98]"
+                >
+                  <FaUserCircle className="text-xl" />
+                  <span className="text-lg">Get Started - It's Free</span>
+                </button>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Auth Box - conditionally rendered */}
+          {showAuthBox && (
+            <CompactAuthBox
+              onClose={handleCloseAuthBox}
+              onLoginSuccess={handleLoginSuccess}
+            />
+          )}
         </div>
       )}
     </div>

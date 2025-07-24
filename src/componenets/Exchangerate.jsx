@@ -9,11 +9,9 @@ const ExchangeRatePage = ({ dataa }) => {
       <h3 className="text-2xl font-semibold mb-8 text-[#1a1a1a]">
         Exchange Rates Overview
       </h3>
-
-      {/* Table Header */}
       <div className="hidden md:grid grid-cols-4 text-sm text-zinc-500 border-b border-[#e0e5f0] pb-3">
         <div>Currency</div>
-        <div>Rate</div>
+        <div>Rate In USD</div>
         <div>24h Change</div>
         <div>Chart</div>
       </div>

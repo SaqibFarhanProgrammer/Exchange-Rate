@@ -39,7 +39,7 @@ const CompactAuthBox = ({ onClose }) => {
             onClick={onClose}
             className="text-white hover:text-gray-200 transition"
           >
-            <IoCloseSharp className="text-2xl" />
+            <IoCloseSharp className="cursor-pointer text-2xl" />
           </button>
         </div>
 
