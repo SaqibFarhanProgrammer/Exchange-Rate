@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { FaUserCircle, FaEnvelope, FaSignOutAlt, FaCog } from "react-icons/fa";
+import { FaEnvelope, FaSignOutAlt, FaCog, FaUserCircle } from "react-icons/fa";
 import Login from "../Auth/Login";
 
 const ProfilePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(localStorage.getItem("islogin"))
+    JSON.parse(localStorage.getItem("islogin")) || false
   );
   const [showAuthBox, setShowAuthBox] = useState(false);
-  const [userprofiledata, setuserprofiledata] = useState({});
-  const [profileimage, setprofileimage] = useState();
-
-  localStorage.setItem("islogin", JSON.stringify(isLoggedIn));
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem("previewImage")
+  );
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userdata")) || {}
+  );
 
   useEffect(() => {
-    const logincondition = JSON.parse(localStorage.getItem("islogin"));
-    setIsLoggedIn(logincondition);
-  }, []);
+    localStorage.setItem("islogin", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (profileImage) {
+      localStorage.setItem("previewImage", profileImage);
+    }
+  }, [profileImage]);
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setShowAuthBox(false);
@@ -23,23 +31,26 @@ const ProfilePage = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setShowAuthBox(false);
   };
 
   const handleCloseAuthBox = () => {
     setShowAuthBox(false);
   };
 
-  const userdata = (params) => {
-    setuserprofiledata(params);
+  const handleUserData = (data) => {
+    setUserData(data);
+    localStorage.setItem("userdata", JSON.stringify(data));
   };
 
-  const handlesignup = () => {
+  const handleSignup = () => {
     setIsLoggedIn(true);
   };
 
-  function getprfoileimage(params) {
-    setprofileimage(params);
-  }
+  const getProfileImage = (img) => {
+    setProfileImage(img);
+    localStorage.setItem("previewImage", img);
+  };
 
   return (
     <div className="h-screen w-full bg-[#f4f6fc] font-sans">
@@ -49,15 +60,15 @@ const ProfilePage = () => {
             <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#0040ff] to-[#00aaff] overflow-hidden shadow-md">
               <img
                 src={
-                  profileimage ||
+                  profileImage ||
                   "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"
                 }
                 alt="profile"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <h2 className="mt-4 text-xl font-semibold text-[#1a1a1a] tracking-tight">
-              {userprofiledata?.name || "No Name"}
+            <h2 className="mt-4 text-xl font-semibold text-[#1a1a1a]">
+              {userData.name || "No Name"}
             </h2>
             <button
               onClick={handleLogout}
@@ -70,12 +81,9 @@ const ProfilePage = () => {
 
           <main className="flex-1 p-10 overflow-y-auto">
             <div className="flex items-center justify-between mb-10">
-              <h1 className="text-3xl font-semibold text-[#1a1a1a] tracking-tight">
+              <h1 className="text-3xl font-semibold text-[#1a1a1a]">
                 My Profile
               </h1>
-              <button className="text-[#0040ff] hover:text-[#0030cc] transition text-lg">
-                <FaCog />
-              </button>
             </div>
 
             <div className="space-y-6 max-w-2xl">
@@ -84,7 +92,7 @@ const ProfilePage = () => {
                   Full Name
                 </label>
                 <div className="bg-[#f6f8fe] p-4 rounded-lg text-sm font-medium text-[#1a1a1a] shadow-sm">
-                  {userprofiledata?.name || "N/A"}
+                  {userData.name || "N/A"}
                 </div>
               </div>
 
@@ -94,7 +102,7 @@ const ProfilePage = () => {
                 </label>
                 <div className="flex items-center gap-2 bg-[#f6f8fe] p-4 rounded-lg text-sm font-medium text-[#1a1a1a] shadow-sm">
                   <FaEnvelope className="text-[#0040ff]" />
-                  {userprofiledata?.email || "N/A"}
+                  {userData.email || "N/A"}
                 </div>
               </div>
 
@@ -103,7 +111,7 @@ const ProfilePage = () => {
                   About Me
                 </label>
                 <div className="bg-[#f6f8fe] p-4 rounded-lg text-sm text-[#1a1a1a] leading-relaxed shadow-sm">
-                  {userprofiledata?.bio || "No bio provided."}
+                  {userData.bio || "No bio provided."}
                 </div>
               </div>
             </div>
@@ -114,7 +122,7 @@ const ProfilePage = () => {
           <div className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center">
               <h2 className="text-3xl font-bold text-white">
-                Welcome to CryptoHub
+                Welcome to ExchangeGate
               </h2>
               <p className="text-white mt-2 text-sm">
                 Your personal crypto dashboard
@@ -126,17 +134,18 @@ const ProfilePage = () => {
                 className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md"
               >
                 <FaUserCircle className="text-xl" />
-                <span className="text-lg">Get Started – It's Free</span>
+                <span className="text-lg">Create Account</span>
               </button>
             </div>
           </div>
+
           {showAuthBox && (
             <Login
               onClose={handleCloseAuthBox}
               onLoginSuccess={handleLoginSuccess}
-              userdata={userdata}
-              handlesignup={handlesignup}
-              getprfoileimage={getprfoileimage}
+              userdata={handleUserData}
+              handlesignup={handleSignup}
+              getprofileimage={getProfileImage}
             />
           )}
         </div>

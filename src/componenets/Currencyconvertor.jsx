@@ -10,7 +10,6 @@ const Currencyconvertor = ({ getchartdata }) => {
   const [convertedamount, setconvertedamount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [passdatatochart, setpassdatatochart] = useState("");
 
   const convert = async () => {
     if (!amount || amount <= 0) {
