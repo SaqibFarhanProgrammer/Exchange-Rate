@@ -7,7 +7,6 @@ const Profile = () => {
   return (
     <div className="fixed  right-4 top-4 md:right-6 md:top-6">
       <div className="relative">
-        {/* Profile icon button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 hover:bg-indigo-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -28,7 +27,6 @@ const Profile = () => {
           </svg>
         </button>
 
-        {/* Dropdown menu - shown based on isOpen state */}
         {isOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
             <Link

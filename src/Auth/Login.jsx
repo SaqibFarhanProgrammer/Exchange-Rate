@@ -5,7 +5,7 @@ const CompactAuthBox = ({
   onClose,
   userdata,
   handlesignup,
-  getprfoileimage,
+  getProfileImage,
 }) => {
   const [formData, setFormData] = useState({
     img: "",
@@ -19,14 +19,14 @@ const CompactAuthBox = ({
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   localStorage.setItem("userdata", JSON.stringify(formData));
+
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("userdata"));
     setFormData(data);
-    // console.log(formData);
   }, []);
 
   const handleImageChange = (e) => {
@@ -34,22 +34,23 @@ const CompactAuthBox = ({
     if (file) setPreviewImage(URL.createObjectURL(file));
   };
 
-  const passdata = () => {
+  const passData = () => {
     userdata({ ...formData });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    passdata(); // Send data to parent
-    handlesignup(); // Login success
-    onClose(); // Close modal
+    passData();
+    handlesignup();
+    onClose();
   };
 
-  function passimage() {
-    getprfoileimage(previewImage);
-  }
+  const passImage = () => {
+    getProfileImage(previewImage);
+  };
+
   useEffect(() => {
-    passimage();
+    passImage();
   }, []);
 
   return (

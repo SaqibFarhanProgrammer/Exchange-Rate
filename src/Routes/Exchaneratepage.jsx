@@ -46,7 +46,6 @@ const Exchaneratepage = ({ currencydata }) => {
 
   return (
     <div className="w-full h-screen overflow-y-auto bg-white p-6 border border-[#e0e5f0] text-black">
-      {/* Search Box */}
       <div className="sticky top-0 z-10 bg-white pb-4">
         <div className="relative w-full">
           <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0040ff]" />
@@ -61,12 +60,10 @@ const Exchaneratepage = ({ currencydata }) => {
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </div>
 
-      {/* Section Heading */}
       <h3 className="text-xl font-semibold text-[#1a1a1a] mt-8 mb-4">
         Exchange Rates
       </h3>
 
-      {/* Table Header */}
       <div className="hidden md:grid grid-cols-4 text-sm font-medium text-zinc-500 border-b border-[#e0e5f0] py-2 mb-2">
         <div>Currency</div>
         <div>Rate</div>
