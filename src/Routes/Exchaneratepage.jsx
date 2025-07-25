@@ -109,7 +109,7 @@ const Exchaneratepage = ({ currencydata }) => {
           })
         ) : (
           <div className="text-center py-10 text-gray-500">
-            {error || "Loading currency data..."}
+            {error || "Internet Is Slow Loading currency data..."}
           </div>
         )}
       </div>

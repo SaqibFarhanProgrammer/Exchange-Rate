@@ -19,8 +19,15 @@ const CompactAuthBox = ({
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+  localStorage.setItem("userdata", JSON.stringify(formData));
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("userdata"));
+    setFormData(data);
+    // console.log(formData);
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];

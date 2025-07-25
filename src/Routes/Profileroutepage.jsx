@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle, FaEnvelope, FaSignOutAlt, FaCog } from "react-icons/fa";
 import Login from "../Auth/Login";
 
 const ProfilePage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(logincondition);
   const [showAuthBox, setShowAuthBox] = useState(false);
   const [userprofiledata, setuserprofiledata] = useState({});
   const [profileimage, setprofileimage] = useState();
 
+  localStorage.setItem("islogin", JSON.stringify(isLoggedIn));
+
+  useEffect(() => {
+    const logincondition = JSON.parse(localStorage.getItem("islogin"));
+    setIsLoggedIn(logincondition);
+  }, []);
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setShowAuthBox(false);
