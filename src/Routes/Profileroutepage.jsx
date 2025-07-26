@@ -67,7 +67,6 @@ const ProfilePage = () => {
             <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#0040ff] to-[#00aaff] overflow-hidden shadow-md">
               <img
                 src={img}
-                alt="profile"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const Chart = ({ datas }) => {
   const numdata = parseFloat(datas) || 0;
@@ -37,20 +29,13 @@ const Chart = ({ datas }) => {
           <Tooltip
             contentStyle={{
               background: "#f5f9ff",
-              border: "1px solid #0040ff",
               color: "#0040ff",
             }}
             labelStyle={{ color: "#0040ff" }}
             itemStyle={{ color: "#0040ff" }}
           />
 
-          <Area
-            type="line"
-            dataKey="uv"
-            stroke="#0040ff"
-            fill="url(#colorUv)"
-            strokeWidth={2}
-          />
+          <Area type="line" dataKey="uv" fill="url(#colorUv)" strokeWidth={2} />
         </AreaChart>
       </ResponsiveContainer>
     </div>
