@@ -11,8 +11,6 @@ const CompactAuthBox = ({ onClose, handlesignup }) => {
     bio: "",
   });
 
-  const [previewImage, setPreviewImage] = useState(null);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -27,6 +25,7 @@ const CompactAuthBox = ({ onClose, handlesignup }) => {
     if (file) {
       const imageURL = URL.createObjectURL(file);
       setloginimage(imageURL);
+      localStorage.setItem("proimg", JSON.stringify(imageURL));
 
       setFormData((prevData) => {
         const updatedData = { ...prevData, img: imageURL };
@@ -50,8 +49,6 @@ const CompactAuthBox = ({ onClose, handlesignup }) => {
       });
     }
   }, []);
-
-  useEffect(() => {}, [previewImage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
