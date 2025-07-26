@@ -4,11 +4,9 @@ import Sidebar from "./componenets/Sidebar";
 
 import Main from "./componenets/Main";
 import Convertorroute from "./Routes/Convertorroutepage";
-import Profileroute from "./Routes/Profileroutepage";
 import Exchangeroute from "./Routes/Exchaneratepage";
 import CryptoPriceUI from "./Routes/CryptoPriceUI";
 import { useEffect, useState } from "react";
-import Login from "./Auth/Login";
 
 function App() {
   const [currencydata, setcurrencydata] = useState();
@@ -22,7 +20,6 @@ function App() {
         <Sidebar />
         <div className="flex-1  overflow-y-scroll">
           <Routes>
-            <Route path="/profile" element={<Profileroute />} />
             <Route
               path="/"
               element={<Main getcurrencydata={getcurrencydata} />}

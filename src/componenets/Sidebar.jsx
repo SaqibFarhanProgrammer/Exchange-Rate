@@ -27,18 +27,12 @@ const Sidebar = () => {
             <FaChartLine className="icon text-[#0040ff]" />
             Market
           </Link>
-          <Link
-            to="/profile"
-            className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
-          >
-            <FaRegUserCircle className="icon text-[#627eea]" />
-            Profile
-          </Link>
 
           <Link
             to="/converter"
             className="menu-item hover:bg-gradient-to-r from-[#0040ff] to-[#00aaff] hover:text-white px-4 py-3 rounded-xl flex items-center gap-3 transition text-[#1a1a1a]"
           >
+            c
             <FaBitcoin className="icon text-[#f7931a]" />
             Convertor
           </Link>
