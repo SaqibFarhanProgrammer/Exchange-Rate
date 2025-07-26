@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
-const CompactAuthBox = ({
-  onClose,
-  userdata,
-  handlesignup,
-  getprofileimage,
-}) => {
+const CompactAuthBox = ({ onClose, handlesignup }) => {
+  const [loginimage, setloginimage] = useState("");
   const [formData, setFormData] = useState({
     img: "",
     name: "",
@@ -19,34 +15,47 @@ const CompactAuthBox = ({
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    const updatedFormData = { ...formData, [name]: value };
-    setFormData(updatedFormData);
-    localStorage.setItem("userdata", JSON.stringify(updatedFormData));
+    setFormData((prevData) => {
+      const updatedData = { ...prevData, [name]: value };
+      localStorage.setItem("userdata", JSON.stringify(updatedData));
+      return updatedData;
+    });
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageURL = URL.createObjectURL(file);
-      setPreviewImage(imageURL);
-      localStorage.setItem("previewImage", imageURL);
+      setloginimage(imageURL);
+
+      setFormData((prevData) => {
+        const updatedData = { ...prevData, img: imageURL };
+        localStorage.setItem("userdata", JSON.stringify(updatedData));
+        return updatedData;
+      });
     }
   };
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("userdata"));
-    const savedImage = localStorage.getItem("previewImage");
-    if (data) setFormData(data);
-    if (savedImage) setPreviewImage(savedImage);
+    if (data) {
+      setFormData(data);
+    } else {
+      setFormData({
+        img: "",
+        name: "",
+        email: "",
+        password: "",
+        bio: "",
+      });
+    }
   }, []);
 
-  useEffect(() => {
-    getprofileimage(previewImage);
-  }, [previewImage]);
+  useEffect(() => {}, [previewImage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    userdata({ ...formData });
+    localStorage.setItem("userdata", JSON.stringify(formData));
     handlesignup();
     onClose();
   };
@@ -68,9 +77,9 @@ const CompactAuthBox = ({
           <div className="flex justify-center mb-6">
             <div className="relative">
               <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow">
-                {previewImage ? (
+                {loginimage ? (
                   <img
-                    src={previewImage}
+                    src={loginimage}
                     className="w-full h-full object-cover"
                   />
                 ) : (

@@ -7,11 +7,16 @@ const ProfilePage = () => {
     JSON.parse(localStorage.getItem("islogin")) || false
   );
   const [showAuthBox, setShowAuthBox] = useState(false);
-  const [profileImage, setProfileImage] = useState(
-    localStorage.getItem("previewImage")
-  );
+  const [profileImage, setProfileImage] = useState();
+  useEffect(() => {
+    setProfileImage(
+      localStorage.getItem("previewImage") ||
+        "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"
+    );
+  }, []);
+
   const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userdata")) || {}
+    JSON.parse(localStorage.getItem("userdata"))
   );
 
   useEffect(() => {
@@ -31,6 +36,8 @@ const ProfilePage = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem("userdata");
+
     setShowAuthBox(false);
   };
 
@@ -38,18 +45,8 @@ const ProfilePage = () => {
     setShowAuthBox(false);
   };
 
-  const handleUserData = (data) => {
-    setUserData(data);
-    localStorage.setItem("userdata", JSON.stringify(data));
-  };
-
   const handleSignup = () => {
     setIsLoggedIn(true);
-  };
-
-  const getProfileImage = (img) => {
-    setProfileImage(img);
-    localStorage.setItem("previewImage", img);
   };
 
   return (
@@ -78,7 +75,6 @@ const ProfilePage = () => {
               Logout
             </button>
           </aside>
-
           <main className="flex-1 p-10 overflow-y-auto">
             <div className="flex items-center justify-between mb-10">
               <h1 className="text-3xl font-semibold text-[#1a1a1a]">
@@ -143,9 +139,7 @@ const ProfilePage = () => {
             <Login
               onClose={handleCloseAuthBox}
               onLoginSuccess={handleLoginSuccess}
-              userdata={handleUserData}
               handlesignup={handleSignup}
-              getprofileimage={getProfileImage}
             />
           )}
         </div>
